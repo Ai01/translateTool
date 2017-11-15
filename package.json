@@ -1,12 +1,12 @@
 {
   "name": "translatetool",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "translate in terminal",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && node dist/index.js"
+    "dev": "npm run build && node dist/index.js"
   },
   "author": "baihaihui",
   "license": "ISC",
