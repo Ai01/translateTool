@@ -8,13 +8,16 @@
 ## how to dev it
 
 1. git clone https://github.com/Ai01/translateTool.git
-2. npm i
-3. npm run dev
+2. git checkout develop
+3. npm i
+4. npm run dev
 
 ## how to use it
 
-1. npm run build
-2. node ./dist/index.js  -q <content>
+1. git clone https://github.com/Ai01/translateTool.git
+2. git checkout develop
+3. npm run build
+4. node ./dist/index.js  -q <content>
 
 ## todo
 
