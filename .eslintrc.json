@@ -1,0 +1,17 @@
+{
+    "extends": "google",
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "rules": {
+        "max-len":[1, 150],
+        "indent":["error", 2],
+        "valid-jsdoc":["off"]
+    }
+}

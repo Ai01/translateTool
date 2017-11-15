@@ -1,0 +1,1 @@
+# tranlateTool in terminal
