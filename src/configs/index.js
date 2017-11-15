@@ -1,3 +1,9 @@
-import {getYoudaoApiUrl} from './youdaoApiConfig';
+import {
+  getYoudaoApiUrl,
+  parseResponseForYoudao,
+} from './youdaoApiConfig';
 
-export {getYoudaoApiUrl};
+export {
+  getYoudaoApiUrl,
+  parseResponseForYoudao,
+};

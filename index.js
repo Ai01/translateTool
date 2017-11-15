@@ -1,30 +1,51 @@
-import {getYoudaoApiUrl} from 'src/configs';
+// import commander from 'commander';
+import {
+  getYoudaoApiUrl,
+  parseResponseForYoudao,
+} from 'src/configs';
 import {request} from 'src/network';
+import {commanderProgram, colorOut, consoleDash} from 'src/io';
 
-const youdaoUrl = getYoudaoApiUrl('hello');
+// 命令行输入
+commanderProgram.parse(process.argv);
 
+// 获取查询的内容
+const {query}= commanderProgram;
+
+// 将内容拼接成url
+const youdaoUrl = getYoudaoApiUrl(query|| 'hello');
+
+// 向url发出请求
 request(youdaoUrl, (error, response, body) => {
-  console.log('--------');
-  console.log('body:', body);
-  console.log('error:', error); // Print the error if one occurred
-  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  console.log('--------');
+  const res = parseResponseForYoudao(body);
   const {
     errorCode,
     query,
     translation,
     basic,
     web,
-    l,
-    dict,
-    webdict,
-  } = response;
-  console.log('errorCode', errorCode);
-  console.log('query', query);
-  console.log('translation', translation);
-  console.log('basic', basic);
-  console.log('web', web);
-  console.log('l', l);
-  console.log('dict', dict);
-  console.log('webdict', webdict);
+  } = res;
+  if (Number(errorCode)) {
+    colorOut('错误:', 'white');
+    colorOut(errorCode, 'red');
+    consoleDash();
+  }
+  colorOut('查询内容:', 'white');
+  colorOut(query, 'green');
+  consoleDash();
+  colorOut('翻译结果:', 'white');
+  colorOut(translation, 'green');
+  consoleDash();
+  if (basic) {
+    colorOut('字典:', 'white');
+    colorOut(basic, 'yellow');
+    consoleDash();
+  }
+  if (web) {
+    colorOut('网络解释:', 'white');
+    colorOut(web, 'grey');
+    consoleDash();
+  }
 });
+
+

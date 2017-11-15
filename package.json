@@ -11,6 +11,8 @@
   "author": "baihaihui",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.1.2",
+    "commander": "^2.11.0",
     "md5": "^2.2.1",
     "request": "^2.83.0"
   },

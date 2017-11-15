@@ -2,7 +2,8 @@ import md5 from 'md5';
 
 // 对md5进行封装。防止出现中间层需求
 const myMd5 = (data) => {
-  console.log('md5加密完成');
+  // ToDo log
+  // console.log('md5加密完成');
   return md5(data);
 };
 

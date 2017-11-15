@@ -47,4 +47,49 @@ const getYoudaoApiUrl = (q = 'test', from = 'en', to = 'ch') => {
   return `${youdaoApiUrl}?q=${_q}&from=${_from}&to=${_to}&appKey=${appId}&salt=${salt}&sign=${sign}`;
 };
 
-export {getYoudaoApiUrl};
+// 获取字典解释
+const getBasic = (basic) => {
+  if (!basic) {
+    return null
+    ;
+  }
+  const {explains} = basic;
+  return explains;
+};
+
+// 获取网络解释
+const getWeb = (web) => {
+  if (!web) {
+    return null;
+  }
+  return web && web.map(({key, value})=>{
+    return `${key}: ${value}`;
+  });
+};
+
+// 对返回结果进行整理
+const parseResponseForYoudao = (res) =>{
+  if (!res) {
+    throw new Error('没有需要解析的内容');
+  }
+  const _res = JSON.parse(res);
+  const {
+    errorCode, // 错误代码
+    query, // 查询字段
+    translation, // 翻译结果
+    basic, // 基本词典,查词时才有
+    web, // 网络释义，该结果不一定存在
+    // l, // 源语言和目标语言
+    // dict, //  词典deeplink 查询语种为支持语言时，存在
+    // webdict, // webdeeplink 查询语种为支持语言时，存在
+  } = _res;
+  return {
+    errorCode,
+    query,
+    translation: translation.join('\n'),
+    basic: getBasic(basic) && getBasic(basic).join('\n'),
+    web: getWeb(web) && getWeb(web).join('\n'),
+  };
+};
+
+export {getYoudaoApiUrl, parseResponseForYoudao};
