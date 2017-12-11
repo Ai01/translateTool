@@ -19,14 +19,38 @@ const youdaoApiUrl = 'http://openapi.youdao.com/api';
 // 需要在utils中写一个函数来实现这个事情
 
 const supportLanguageList = {
-  ch: 'zh-CHS', // 中文
-  ja: 'ja', // 日文
-  en: 'EN', // 英文
-  ko: 'ko', // 韩文
-  fr: 'fr', // 法文
-  ru: 'ru', // 俄文
-  pt: 'pt', // 葡萄牙文
-  es: 'es', // 西班牙文
+  ch: {
+    value: 'zh-CHS',
+    name: '中文',
+  }, // 中文
+  ja: {
+    value: 'ja',
+    name: '日文',
+  }, // 日文
+  en: {
+    value: 'EN',
+    name: '英文',
+  }, // 英文
+  ko: {
+    value: 'ko',
+    name: '韩文',
+  }, // 韩文
+  fr: {
+    value: 'fr',
+    name: '法文',
+  }, // 法文
+  ru: {
+    value: 'ru',
+    name: '俄文',
+  }, // 俄文
+  pt: {
+    value: 'pt',
+    name: '葡萄牙文',
+  }, // 葡萄牙文
+  es: {
+    value: 'es',
+    name: '西班牙文',
+  }, // 西班牙文
 };
 
 // 获取有道请求url
@@ -37,11 +61,11 @@ const supportLanguageList = {
  * @param {string} [to="zh-CHS"] 输出的语言类型默认为中文
  * @returns
  */
-const getYoudaoApiUrl = (q = 'test', from = 'en', to = 'ch') => {
+const getYoudaoApiUrl = (q = 'nothing', from = 'en', to = 'ch') => {
   // 通过md5生成的签名。用传入的字符就可以
   const sign = myMd5(`${appId}${q}${salt}${appKey}`);
-  const _from = supportLanguageList[from];
-  const _to = supportLanguageList[to];
+  const _from = supportLanguageList[from] ? supportLanguageList[from].value : 'EN';
+  const _to = supportLanguageList[to] ? supportLanguageList[to].value : 'zh-CHS';
   // url中q需要编码
   const _q = encodeURI(q);
   return `${youdaoApiUrl}?q=${_q}&from=${_from}&to=${_to}&appKey=${appId}&salt=${salt}&sign=${sign}`;
@@ -92,4 +116,8 @@ const parseResponseForYoudao = (res) =>{
   };
 };
 
-export {getYoudaoApiUrl, parseResponseForYoudao};
+export {
+  getYoudaoApiUrl,
+  parseResponseForYoudao,
+  supportLanguageList as youdaoSupportLanguageList,
+};
