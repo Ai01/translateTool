@@ -1,5 +1,5 @@
 {
-  "name": "translatetool",
+  "name": "tsint",
   "version": "0.0.2",
   "description": "translate in terminal",
   "main": "index.js",
