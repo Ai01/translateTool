@@ -7,7 +7,6 @@ import {commanderProgram, colorOut, consoleDash} from 'src/io';
 // 命令行输入
 commanderProgram.parse(process.argv);
 
-
 // 获取查询的内容
 const {query, from, to} = commanderProgram;
 
@@ -21,6 +20,9 @@ if (query) {
 
   // 向url发出请求
   request(youdaoUrl, (error, response, body) => {
+    if (error) {
+      console.error(error);
+    }
     const res = parseResponseForYoudao(body);
     const {errorCode, query, translation, basic, web} = res;
     if (Number(errorCode)) {
@@ -46,5 +48,3 @@ if (query) {
     }
   });
 }
-
-
