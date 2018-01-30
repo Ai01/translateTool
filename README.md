@@ -4,13 +4,18 @@
 
 > 自己使用的命令行翻译工具，目前只支持有道翻译api
 
-## use
+## dev use
 
 1. git clone https://github.com/Ai01/translateTool.git
 2. git checkout develop
 3. npm run build
 4. npm install -g 
 5. tsint -q \<content>
+
+## use
+
+1. npm install tsint -g 
+2. tsint -q <content need to translate>
 
 ## todo
 
