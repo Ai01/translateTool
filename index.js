@@ -25,11 +25,15 @@ if (query) {
     }
     const res = parseResponseForYoudao(body);
     const {errorCode, query, translation, basic, web} = res;
+
+    // 错误处理
     if (Number(errorCode)) {
       colorOut('错误:', 'white');
       colorOut(errorCode, 'red');
       consoleDash();
     }
+
+    // 翻译相关内容打印
     colorOut('查询内容:', 'white');
     colorOut(query, 'green');
     consoleDash();
