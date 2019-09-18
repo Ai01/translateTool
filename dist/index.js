@@ -7,12 +7,14 @@ var _network = require('./src/network');
 
 var _io = require('./src/io');
 
+var _file = require('./src/utils/file');
+
 // 命令行输入
+
+// import commander from 'commander';
 _io.commanderProgram.parse(process.argv);
 
 // 获取查询的内容
-
-// import commander from 'commander';
 var query = _io.commanderProgram.query,
     from = _io.commanderProgram.from,
     to = _io.commanderProgram.to;
@@ -38,11 +40,15 @@ if (query) {
         basic = res.basic,
         web = res.web;
 
+    // 错误处理
+
     if (Number(errorCode)) {
       (0, _io.colorOut)('错误:', 'white');
       (0, _io.colorOut)(errorCode, 'red');
       (0, _io.consoleDash)();
     }
+
+    // 翻译相关内容打印
     (0, _io.colorOut)('查询内容:', 'white');
     (0, _io.colorOut)(query, 'green');
     (0, _io.consoleDash)();
@@ -59,5 +65,8 @@ if (query) {
       (0, _io.colorOut)(web, 'grey');
       (0, _io.consoleDash)();
     }
+
+    // 将翻译的结果保存到某一个文件中
+    (0, _file.saveContent)('{\n\u67E5\u8BE2\u5185\u5BB9: ' + query + '\n, \u7FFB\u8BD1\u7ED3\u679C: ' + basic + '\n}\n', _configs.SAVE_FILE_URL);
   });
 }

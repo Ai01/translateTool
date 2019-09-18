@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 // import commander from 'commander';
-import {getYoudaoApiUrl, parseResponseForYoudao} from 'src/configs';
+import {getYoudaoApiUrl, parseResponseForYoudao, SAVE_FILE_URL} from 'src/configs';
 import {request} from 'src/network';
 import {commanderProgram, colorOut, consoleDash} from 'src/io';
+import {saveContent} from 'src/utils/file';
 
 // 命令行输入
 commanderProgram.parse(process.argv);
@@ -50,5 +51,8 @@ if (query) {
       colorOut(web, 'grey');
       consoleDash();
     }
+
+    // 将翻译的结果保存到某一个文件中
+    saveContent(`{\n查询内容: ${query},\n 翻译结果: ${basic}\n}\n`, SAVE_FILE_URL);
   });
 }

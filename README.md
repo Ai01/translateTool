@@ -4,18 +4,24 @@
 
 > 自己使用的命令行翻译工具，目前只支持有道翻译api
 
-## dev use
+## 调试参考
+
+https://github.com/atian25/blog/issues/17
+
+## 开发流程
 
 1. git clone https://github.com/Ai01/translateTool.git
 2. git checkout develop
-3. npm run build
-4. npm install -g 
-5. tsint -q \<content>
+3. npm run local
+4. tsint -q \<content>
+5. npm run unLocal // 清楚link
 
-## use
+## 使用
 
 1. npm install tsint -g 
 2. tsint -q <content need to translate>
+
+会将翻译结果自动保存到文件中: /Users/baihaihui/Desktop/tsintResult.txt
 
 ## todo
 

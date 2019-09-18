@@ -4,13 +4,17 @@
 
 > 自己使用的命令行翻译工具，目前只支持有道翻译api
 
+## 调试参考
+
+https://github.com/atian25/blog/issues/17
+
 ## dev use
 
 1. git clone https://github.com/Ai01/translateTool.git
 2. git checkout develop
-3. npm run build
-4. npm install -g 
-5. tsint -q \<content>
+3. npm run local
+4. tsint -q \<content>
+5. npm run unLocal // 清楚link
 
 ## use
 

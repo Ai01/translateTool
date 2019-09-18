@@ -1,12 +1,14 @@
 {
   "name": "tsint",
-  "version": "0.0.3",
+  "version": "1.0.1",
   "description": "translate in terminal",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "dev": "npm run build && node dist/index.js"
+    "dev": "npm run build && node dist/index.js",
+    "local": "npm run build && npm link",
+    "unLocal": "npm unlink"
   },
   "bin": {
     "tsint": "./dist/index.js"
@@ -14,19 +16,19 @@
   "author": "baihaihui",
   "license": "ISC",
   "dependencies": {
-    "colors": "^1.1.2",
-    "commander": "^2.11.0",
+    "colors": "^1.3.3",
+    "commander": "^2.20.0",
     "md5": "^2.2.1",
-    "request": "^2.83.0"
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.0.2",
-    "babel-plugin-module-resolver": "^3.0.0",
+    "babel-eslint": "^8.2.6",
+    "babel-plugin-module-resolver": "^3.2.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
-    "eslint": "^4.11.0",
+    "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.7.1"
   }
 }
